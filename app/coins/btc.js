@@ -8,10 +8,10 @@ const btcFun = require("./btcFun.js");
 var currencyUnits = [
 	{
 		type:"native",
-		name:"BTC",
+		name:"FEC",
 		multiplier:1,
 		default:true,
-		values:["", "btc", "BTC"],
+		values:["", "fec", "FEC"],
 		decimalPlaces:8
 	},
 	{
@@ -101,10 +101,10 @@ module.exports = {
 	minTxWeight: 166 * 4, // hack
 	difficultyAdjustmentBlockCount: 2016,
 	maxSupplyByNetwork: {
-		"main": new Decimal(20999817.31308491), // ref: https://bitcoin.stackexchange.com/a/38998
-		"test": new Decimal(21000000),
-		"regtest": new Decimal(21000000),
-		"signet": new Decimal(21000000)
+		"main": new Decimal(61000000), // ref: https://bitcoin.stackexchange.com/a/38998
+		"test": new Decimal(61000000),
+		"regtest": new Decimal(61000000),
+		"signet": new Decimal(61000000)
 	},
 	targetBlockTimeSeconds: 600,
 	targetBlockTimeMinutes: 10,
