@@ -255,47 +255,7 @@ html(lang="en")
 
 
 				
-				if (!crawlerBot)
-					.mb-4
-						iframe(id="quoteIframe", src="./snippet/quote/random", onload="iframeLoaded('quoteIframe');", scrolling="no", height="0", style="width: 100%;")
-
-				hr
-
 				
-				.row.mt-4.mb-6
-					.col-lg-4
-						.mb-4
-							h6 Project
-
-							.ms-2
-								a.footer-link(href="https://github.com/janoside/btc-rpc-explorer") github.com/janoside/btc-rpc-explorer
-									
-								if (global.sourcecodeProjectMetadata)
-									div.mt-2
-										a.btn.btn-primary.btn-sm.me-3.mb-1.text-decoration-none(href="https://github.com/janoside/btc-rpc-explorer")
-											i.fas.fa-star.fontawesome-shadow.text-warning.me-2
-											span.badge.bg-white.text-dark #{global.sourcecodeProjectMetadata.stargazers_count}
-
-										a.btn.btn-primary.btn-sm.me-3.mb-1.text-decoration-none(href="https://github.com/janoside/btc-rpc-explorer/fork")
-											i.fas.fa-code-branch.fontawesome-shadow.me-2
-											span.badge.bg-white.text-dark #{global.sourcecodeProjectMetadata.forks_count}
-
-					.col-lg-4
-						.mb-4
-							h6 App Details
-
-							.ms-2
-								span version: #{global.appVersion}
-								if (sourcecodeVersion)
-									br
-									span commit: 
-										a.footer-link(href=`https://github.com/janoside/btc-rpc-explorer/commit/${sourcecodeVersion}`) #{sourcecodeVersion}
-								
-								br
-								span released: #{sourcecodeDate}
-								span(style="font-size: 0.9em;")  (
-									a.footer-link(href="./changelog") changelog
-									span )
 
 					.col-lg-4
 						if (config.demoSite)

@@ -1,8 +1,8 @@
 global.currencyTypes = {
 	"btc": {
-		id: "btc",
+		id: "fec",
 		type:"native",
-		name:"BTC",
+		name:"FEC",
 		multiplier:1,
 		default:true,
 		decimalPlaces:8

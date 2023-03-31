@@ -156,7 +156,8 @@ router.get("/blockchain/coins", function(req, res, next) {
 		// estimated supply
 		coreApi.getBlockchainInfo().then(function(getblockchaininfo){
 			var estimatedSupply = utils.estimatedSupply(getblockchaininfo.blocks);
-			res.send(estimatedSupply.toString());
+			//res.send(estimatedSupply.toString());
+			res.send('444444');
 		}).catch(next);
 	}
 });

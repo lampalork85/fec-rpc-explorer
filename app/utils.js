@@ -564,24 +564,39 @@ function getBlockTotalFeesFromCoinbaseTxAndBlockHeight(coinbaseTx, blockHeight) 
 }
 
 function estimatedSupply(height) {
-	var checkpointData = coinConfig.coinSupplyCheckpointsByNetwork[global.activeBlockchain];
-	
-	if (!checkpointData) {
-		return new Decimal(0);
+	const checkpoint = coinConfig.utxoSetCheckpointsByNetwork[global.activeBlockchain];
+
+	let checkpointHeight = 0;
+	let checkpointSupply = new Decimal(100);
+
+	if (checkpoint && checkpoint.height <= height) {
+		//console.log("using checkpoint");
+		checkpointHeight = checkpoint.height;
+		checkpointSupply = new Decimal(checkpoint.total_amount);
 	}
 
-	var checkpointHeight = checkpointData[0];
-	var checkpointSupply = checkpointData[1];
+	let halvingBlockInterval = coinConfig.halvingBlockIntervalsByNetwork[global.activeBlockchain];
 
-	var supply = checkpointSupply;
-	
-	var i = checkpointHeight;
+	let supply = checkpointSupply;
+
+	let i = checkpointHeight;
 	while (i < height) {
-		supply = supply.plus(new Decimal(coinConfig.blockRewardFunction(i, global.activeBlockchain)));
+		let nextHalvingHeight = halvingBlockInterval * Math.floor(i / halvingBlockInterval) + halvingBlockInterval;
+		
+		if (height < nextHalvingHeight) {
+			let heightDiff = height - i;
 
-		i++;
+			//console.log(`adding(${heightDiff}): ` + new Decimal(heightDiff).times(coinConfig.blockRewardFunction(i, global.activeBlockchain)));
+			return supply.plus(new Decimal(heightDiff).times(coinConfig.blockRewardFunction(i, global.activeBlockchain)));
+		}
+
+		let heightDiff = nextHalvingHeight - i;
+
+		supply = supply.plus(new Decimal(heightDiff).times(coinConfig.blockRewardFunction(i, global.activeBlockchain)));
+		
+		i += heightDiff;
 	}
-	
+
 	return supply;
 }
 

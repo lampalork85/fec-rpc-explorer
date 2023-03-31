@@ -74,7 +74,7 @@ module.exports = {
 		"regtest": "#777"
 	},
 	siteTitlesByNetwork: {
-		"main":"Bitcoin Explorer",
+		"main":"Ferrite Explorer",
 		"test":"Testnet Explorer",
 		"regtest":"Regtest Explorer",
 		"signet":"Signet Explorer",
@@ -119,6 +119,17 @@ module.exports = {
 		"test": 210000,
 		"regtest": 150,
 		"signet": 210000
+	},
+
+	terminalHalvingCountByNetwork: {
+		"main": 32,
+		"test": 32,
+		"regtest": 32,
+		"signet": 32
+	},
+
+	utxoSetCheckpointsByNetwork: {
+		"main": {"height":702329,"bestblock":"00000000000000000005d323e8b476eac408e88002591b5ed7381ec9baaf2d13","transactions":45854214,"txouts":75356871,"bogosize":5640223435,"hash_serialized_2":"727879e512dde3c87ec4b3b4185d8212506a5eee517694a34785c0a63a7d78b9","disk_size":4582442992,"total_amount":"18826856.29247566","lastUpdated":1632692076775}
 	},
 
 	// used for supply estimates that don't need full gettxoutset accuracy
@@ -522,7 +533,7 @@ module.exports = {
 		}
 	},
 	blockRewardFunction:function(blockHeight, chain) {
-		var eras = [ new Decimal8(50) ];
+		var eras = [ new Decimal8(100) ];
 		for (var i = 1; i < 34; i++) {
 			var previous = eras[i - 1];
 			eras.push(new Decimal8(previous).dividedBy(2));
