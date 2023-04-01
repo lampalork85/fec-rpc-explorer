@@ -57,7 +57,7 @@ module.exports = {
 	name:"Bitcoin",
 	ticker:"BTC",
 	logoUrlsByNetwork:{
-		"main":"./img/logo/logo.svg",
+		"main":"./img/logo/logo.png",
 		"test":"./img/logo/logo-testnet.svg",
 		"regtest":"./img/logo/logo-regtest.svg",
 		"signet":"./img/logo/logo-signet.svg"
